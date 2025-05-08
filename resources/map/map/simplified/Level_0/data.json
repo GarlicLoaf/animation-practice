@@ -9,7 +9,21 @@
 	"neighbourLevels": [],
 	"customFields" : {},
 	"layers": [
-		"Base.png"
+		"Background.png"
 	],
-	"entities" : {}
+	"entities": {
+		"PLAYER_SPAWN": [
+			{
+				"id": "PLAYER_SPAWN",
+				"iid": "a25640a0-1030-11f0-a23a-110b6d63047a",
+				"layer": "Spawn",
+				"x": 72,
+				"y": 72,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		]
+	}
 }
