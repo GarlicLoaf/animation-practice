@@ -51,7 +51,21 @@ Map ParseMap() {
         // handle collision info
         else if (layer["iid"].get<std::string>() ==
                  "fcae4de0-1030-11f0-a23a-b9b8d00d2e67") {
-            // don't handle this for now
+            int map_width = layer["__cWid"].get<int>();
+            int map_height = layer["__cHei"].get<int>();
+
+            for (int i{0}; i < map_width * map_height; i++) {
+                int tile_type{layer["intGridCsv"][i].get<int>()};
+
+                float x = static_cast<float>(i % map_width);
+                float y = static_cast<float>(i / map_width);
+
+                if (tile_type == 1) {
+                    map.collision.push_back(CollisionTile{Vector2{x, y}, 1});
+                } else if (tile_type == 2) {
+                    map.collision.push_back(CollisionTile{Vector2{x, y}, 2});
+                }
+            }
         }
     }
 

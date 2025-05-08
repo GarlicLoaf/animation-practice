@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "map.h"
 #include "raylib.h"
 
 struct Player {
@@ -11,5 +12,6 @@ struct Player {
     bool is_moving;
 };
 
-void PlayerInput(Player *player, const std::vector<int> *collision_vector);
+void PlayerInput(Player *player,
+                 const std::vector<CollisionTile> *collision_vector);
 void DrawPlayer(Player *player, const Texture2D *texture);
