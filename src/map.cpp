@@ -35,9 +35,8 @@ Map ParseMap() {
 
     for (const auto& layer : map_data["levels"][0]["layerInstances"]) {
         // handle background tile info
-        if (layer["iid"].get<std::string>() ==
-            "dd6d11d0-1030-11f0-b004-819f6d3e2371") {
-            for (const auto& tile : layer["gridTiles"]) {
+        if (layer[IID].get<std::string>() == BACKGROUND_LAYER_IID) {
+            for (const auto& tile : layer["autoLayerTiles"]) {
                 float px_x = tile["px"][0].get<float>();
                 float px_y = tile["px"][1].get<float>();
 
@@ -49,8 +48,7 @@ Map ParseMap() {
             }
         }
         // handle collision info
-        else if (layer["iid"].get<std::string>() ==
-                 "fcae4de0-1030-11f0-a23a-b9b8d00d2e67") {
+        else if (layer["iid"].get<std::string>() == COLLISION_LAYER_IID) {
             int map_width = layer["__cWid"].get<int>();
             int map_height = layer["__cHei"].get<int>();
 
@@ -72,7 +70,8 @@ Map ParseMap() {
     return map;
 }
 
-void DrawMap(const Map* map_data, const Texture2D* tileset) {
+void DrawMap(const Map* map_data, const Texture2D* tileset,
+             Vector2* player_position) {
     Rectangle src{0.0f, 0.0f, 16.0f, 16.0f};
     Rectangle target{0.0f, 0.0f, 64.0f, 64.0f};
 

@@ -16,7 +16,7 @@ typedef struct Animation {
 } Animation;
 
 int main() {
-    InitWindow(144 * 4, 112 * 4, "Testing Stuff");
+    InitWindow(64 * 10, 64 * 10, "Testing Stuff");
     SetTargetFPS(30);
 
     SetTraceLogLevel(2);
@@ -26,13 +26,14 @@ int main() {
     const Texture2D player_texture = LoadTexture(player_texture_path.c_str());
 
     std::string map_texture_path =
-        std::string(RESOURCES_PATH) + "map/AdventureBegins_Demo.png";
+        std::string(RESOURCES_PATH) + "map/CastleTown_A.png";
     const Texture2D map_texture = LoadTexture(map_texture_path.c_str());
 
     const Map map_data{ParseMap()};
 
     // initialize player
-    Player player{Vector2{0.0f, 0.0f}, Vector2{0.0f, 0.0f}, Vector2{0.0f, 0.0f}, false};
+    Player player{Vector2{128.0f, 128.0f}, Vector2{0.0f, 0.0f},
+                  Vector2{0.0f, 0.0f}, false};
 
     while (!WindowShouldClose()) {
         // update step
@@ -42,7 +43,7 @@ int main() {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        DrawMap(&map_data, &map_texture);
+        DrawMap(&map_data, &map_texture, &player.position);
         DrawPlayer(&player, &player_texture);
 
         EndDrawing();
