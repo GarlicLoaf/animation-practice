@@ -37,6 +37,8 @@ void PlayerInput(Player *player,
 }
 
 void DrawPlayer(Player *player, const Texture2D *texture) {
+    // Always draws the player in the center of the screen, regardless of
+    // player.grid_position
     Rectangle rect{8.0f, 13.0f, 16.0f, 16.0f};
 
     Rectangle target{256.0f, 256.0f, 64.0f, 64.0f};

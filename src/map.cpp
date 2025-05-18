@@ -1,5 +1,7 @@
 #include "map.h"
 
+#include <raymath.h>
+
 #include <fstream>
 #include <iostream>
 
@@ -75,6 +77,9 @@ void DrawMap(const Map* map_data, const Texture2D* tileset,
     Rectangle src{0.0f, 0.0f, 16.0f, 16.0f};
     Rectangle target{0.0f, 0.0f, 64.0f, 64.0f};
 
+    Vector2 player_offset = Vector2Subtract(
+        Vector2Scale(*player_position, 64.0f), Vector2{256.0f, 256.0f});
+
     for (int i{0}; i < map_data->background_pos.size(); i++) {
         src.x = map_data->background_src_pos[i].x;
         src.y = map_data->background_src_pos[i].y;
@@ -82,9 +87,6 @@ void DrawMap(const Map* map_data, const Texture2D* tileset,
         target.x = map_data->background_pos[i].x * 4.0f;
         target.y = map_data->background_pos[i].y * 4.0f;
 
-        DrawTexturePro(
-            *tileset, src, target,
-            Vector2{player_position->x * 64.0f, player_position->y * 64.0f},
-            0.0f, WHITE);
+        DrawTexturePro(*tileset, src, target, player_offset, 0.0f, WHITE);
     }
 }

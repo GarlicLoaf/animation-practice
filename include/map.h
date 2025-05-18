@@ -6,7 +6,8 @@
 #include "raylib.h"
 
 constexpr const char* IID = "iid";
-constexpr const char* COLLISION_LAYER_IID = "";
+constexpr const char* COLLISION_LAYER_IID =
+    "39356900-1030-11f0-b54c-3544221b5482";
 constexpr const char* BACKGROUND_LAYER_IID =
     "9f24b700-1030-11f0-b54c-310d4878857d";
 
