@@ -82,6 +82,9 @@ void DrawMap(const Map* map_data, const Texture2D* tileset,
         target.x = map_data->background_pos[i].x * 4.0f;
         target.y = map_data->background_pos[i].y * 4.0f;
 
-        DrawTexturePro(*tileset, src, target, Vector2{0.0f, 0.0f}, 0.0f, WHITE);
+        DrawTexturePro(
+            *tileset, src, target,
+            Vector2{player_position->x * 64.0f, player_position->y * 64.0f},
+            0.0f, WHITE);
     }
 }

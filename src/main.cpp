@@ -16,7 +16,7 @@ typedef struct Animation {
 } Animation;
 
 int main() {
-    InitWindow(64 * 10, 64 * 10, "Testing Stuff");
+    InitWindow(64 * 9, 64 * 9, "Testing Stuff");
     SetTargetFPS(30);
 
     SetTraceLogLevel(2);
@@ -32,8 +32,7 @@ int main() {
     const Map map_data{ParseMap()};
 
     // initialize player
-    Player player{Vector2{128.0f, 128.0f}, Vector2{0.0f, 0.0f},
-                  Vector2{0.0f, 0.0f}, false};
+    Player player{Vector2{0.0f, 0.0f}, Vector2{20.0f, 20.0f}, false};
 
     while (!WindowShouldClose()) {
         // update step
@@ -43,8 +42,12 @@ int main() {
         BeginDrawing();
         ClearBackground(BLACK);
 
-        DrawMap(&map_data, &map_texture, &player.position);
+        DrawMap(&map_data, &map_texture, &player.grid_position);
         DrawPlayer(&player, &player_texture);
+
+        DrawText(TextFormat("Grid Position: %.2f, %.2f", player.grid_position.x,
+                            player.grid_position.y),
+                 0, 0, 20, WHITE);
 
         EndDrawing();
     }
