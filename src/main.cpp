@@ -32,7 +32,7 @@ int main() {
     const Map map_data{ParseMap()};
 
     // initialize player
-    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false};
+    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING};
 
     while (!WindowShouldClose()) {
         // update step
