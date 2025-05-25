@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "dialogue.h"
 #include "map.h"
 #include "raylib.h"
 
@@ -12,6 +13,7 @@ struct Player {
     Vector2 grid_position;
     bool is_moving;
     PLAYER_STATE state;
+    Dialogue dialogue;
 };
 
 void PlayerInput(Player *player,

@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
+#include "dialogue.h"
 #include "map.h"
 #include "player.h"
 #include "raylib.h"
@@ -16,7 +17,7 @@ typedef struct Animation {
 } Animation;
 
 int main() {
-    InitWindow(64 * 9, 64 * 9, "Testing Stuff");
+    InitWindow(64 * 9, 64 * 9, "Pixel-RPG MVP");
     SetTargetFPS(30);
 
     SetTraceLogLevel(2);
@@ -32,11 +33,16 @@ int main() {
     const Map map_data{ParseMap()};
 
     // initialize player
-    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING};
+    Dialogue dialogue{{}, 0};
+    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING,
+                  dialogue};
 
     while (!WindowShouldClose()) {
         // update step
         PlayerInput(&player, &map_data.collision);
+
+        if (player.state == READING) {
+        }
 
         // drawing step
         BeginDrawing();
@@ -49,6 +55,9 @@ int main() {
                             player.grid_position.y),
                  0, 0, 20, WHITE);
 
+        if (player.state == READING) {
+            DrawDialogue(&player.dialogue);
+        }
         EndDrawing();
     }
 

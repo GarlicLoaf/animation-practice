@@ -36,7 +36,9 @@ void PlayerInput(Player *player,
 
                 if (tile_type == 1) {
                 } else if (tile_type == 2) {
+                    // player comes across a dialogue box
                     player->state = READING;
+                    LoadDialogue(&player->dialogue);
                 }
             } else {
                 player->grid_position = new_grid_position;
