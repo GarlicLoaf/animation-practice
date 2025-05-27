@@ -2,7 +2,10 @@
 
 #include <fstream>
 #include <iostream>
+#include <sstream>
 #include <string>
+
+#include "globals.h"
 
 void LoadDialogue(Dialogue* dialogue) {
     std::fstream File;
@@ -29,9 +32,30 @@ void UnloadDialogue(Dialogue* dialogue) {
 }
 
 void DrawDialogue(Dialogue* dialogue) {
-    const std::string& line_string =
-        dialogue
-            ->content["lines"][std::to_string(dialogue->current_line)]["text"];
+    auto& lines = dialogue->content["lines"];
+    std::string current_line_str = std::to_string(dialogue->current_line);
+    std::string current_text = lines[current_line_str]["text"];
 
-    DrawText(line_string.c_str(), 0, 400, 30, BLACK);
+    DrawRectangle(0, 64 * 7, 64 * 9, 64 * 2, BLACK);
+
+    int text_size_left = current_text.length();
+    Vector2 print_position{10.0f, 458.0f};
+
+    std::istringstream iss(current_text);
+    std::string word{};
+
+    while (iss >> word) {
+        int word_width = MeasureText(word.c_str(), TEXT_SIZE);
+        int space_width = MeasureText(" ", TEXT_SIZE);
+
+        int remaining_space = SCREEN_WIDTH - (print_position.x + word_width);
+
+        if (remaining_space > 0) {
+        } else {
+            print_position = Vector2{10.0f, print_position.y + TEXT_SIZE + 2};
+        }
+        DrawText(word.c_str(), print_position.x, print_position.y, TEXT_SIZE,
+                 WHITE);
+        print_position.x += word_width + space_width * 1.5;
+    }
 }

@@ -3,6 +3,7 @@
 #include <string>
 
 #include "dialogue.h"
+#include "globals.h"
 #include "map.h"
 #include "player.h"
 #include "raylib.h"
@@ -17,8 +18,8 @@ typedef struct Animation {
 } Animation;
 
 int main() {
-    InitWindow(64 * 9, 64 * 9, "Pixel-RPG MVP");
-    SetTargetFPS(30);
+    InitWindow(SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_TITLE);
+    SetTargetFPS(TARGET_FPS);
 
     SetTraceLogLevel(2);
 

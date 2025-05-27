@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <iostream>
+#include <nlohmann/json.hpp>
+#include <string>
 
 #include "raymath.h"
 
@@ -46,6 +48,14 @@ void PlayerInput(Player *player,
             break;
         }
         case READING: {
+            if (IsKeyPressed(KEY_E)) {
+                auto &lines = player->dialogue.content["lines"];
+                std::string current_line_str =
+                    std::to_string(player->dialogue.current_line);
+                auto &current_line_data = lines[current_line_str];
+                player->dialogue.current_line =
+                    current_line_data["next"].get<int>();
+            }
             break;
         }
     }
