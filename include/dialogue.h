@@ -13,8 +13,7 @@ typedef struct Dialogue {
     int current_decision;
 } Dialogue;
 
-const std::string sds_path =
-    std::string(RESOURCES_PATH) + "/example_dialogue.json";
+const std::string sds_path = std::string(RESOURCES_PATH) + "/grass.json";
 
 void LoadDialogue(Dialogue* dialogue);
 void UnloadDialogue(Dialogue* dialogue);

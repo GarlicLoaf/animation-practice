@@ -1,5 +1,7 @@
 #include "dialogue.h"
 
+#include <raymath.h>
+
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -66,6 +68,7 @@ void DrawDialogue(Dialogue* dialogue) {
     DrawText(&print_position, &iss, WHITE);
 
     if (lines[current_line_str]["type"] == 1) {
+        print_position = Vector2Add(print_position, Vector2{0.0f, 10.0f});
         int counter = 0;
         for (const auto& decision : lines[current_line_str]["options"]) {
             Color print_color = DARKGRAY;

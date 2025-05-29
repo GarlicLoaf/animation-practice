@@ -56,6 +56,8 @@ void PlayerInput(Player *player,
 
                 if (current_line_data["next"] == -1) {
                     player->state = WALKING;
+                    UnloadDialogue(&player->dialogue);
+                    return;
                 }
                 if (player->dialogue.decision_size > 0) {
                     int decision =
