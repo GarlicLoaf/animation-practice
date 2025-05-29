@@ -9,6 +9,8 @@ using json = nlohmann::json;
 typedef struct Dialogue {
     json content;
     int current_line;
+    int decision_size;
+    int current_decision;
 } Dialogue;
 
 const std::string sds_path =

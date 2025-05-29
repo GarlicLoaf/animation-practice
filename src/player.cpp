@@ -53,8 +53,31 @@ void PlayerInput(Player *player,
                 std::string current_line_str =
                     std::to_string(player->dialogue.current_line);
                 auto &current_line_data = lines[current_line_str];
-                player->dialogue.current_line =
-                    current_line_data["next"].get<int>();
+
+                if (current_line_data["next"] == -1) {
+                    player->state = WALKING;
+                }
+                if (player->dialogue.decision_size > 0) {
+                    int decision =
+                        current_line_data["options"]
+                                         [player->dialogue.current_decision];
+                    player->dialogue.current_line =
+                        lines[std::to_string(decision)]["next"];
+
+                } else {
+                    player->dialogue.current_line =
+                        current_line_data["next"].get<int>();
+                }
+            }
+            if (player->dialogue.decision_size > 0) {
+                if (IsKeyPressed(KEY_W)) {
+                    player->dialogue.current_decision =
+                        std::max(player->dialogue.current_decision - 1, 0);
+                } else if (IsKeyPressed(KEY_S)) {
+                    player->dialogue.current_decision =
+                        std::min(player->dialogue.current_decision + 1,
+                                 player->dialogue.decision_size - 1);
+                }
             }
             break;
         }
