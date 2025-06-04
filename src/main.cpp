@@ -21,50 +21,45 @@ int main() {
     InitWindow(SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_TITLE);
     SetTargetFPS(TARGET_FPS);
 
-    SetTraceLogLevel(2);
+    SetTraceLogLevel(1);
 
     // ressource allocation
-    std::string player_texture_path = std::string(RESOURCES_PATH) + "chars.png";
+    std::string player_texture_path =
+        std::string(RESOURCES_PATH) + "character.png";
     const Texture2D player_texture = LoadTexture(player_texture_path.c_str());
 
-    std::string map_texture_path =
-        std::string(RESOURCES_PATH) + "map/CastleTown_A.png";
-    const Texture2D map_texture = LoadTexture(map_texture_path.c_str());
-
-    const Map map_data{ParseMap()};
+    Map map_data{LoadMap()};
 
     // initialize player
     Dialogue dialogue{{}, 0};
     Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING,
                   dialogue};
+    Vector2 temp_player_vec{5.0f, 5.0f};
 
     while (!WindowShouldClose()) {
         // update step
-        PlayerInput(&player, &map_data.collision);
-
-        if (player.state == READING) {
-        }
+        PlayerInput(&player, &map_data.layers[0].tile_positions);
 
         // drawing step
         BeginDrawing();
         ClearBackground(BLACK);
 
-        DrawMap(&map_data, &map_texture, &player.grid_position);
+        DrawMap(&map_data, &player.grid_position);
         DrawPlayer(&player, &player_texture);
 
-        DrawText(TextFormat("Grid Position: %.2f, %.2f", player.grid_position.x,
-                            player.grid_position.y),
-                 0, 0, 20, WHITE);
+        // DrawText(TextFormat("Grid Position: %.2f, %.2f",
+        // player.grid_position.x,
+        //                     player.grid_position.y),
+        //          0, 0, 20, WHITE);
 
-        if (player.state == READING) {
-            DrawDialogue(&player.dialogue);
-        }
+        // if (player.state == READING) {
+        //     DrawDialogue(&player.dialogue);
+        // }
         EndDrawing();
     }
 
-    // ressource deallocation
+    UnloadMap(&map_data);
     UnloadTexture(player_texture);
-    UnloadTexture(map_texture);
 
     CloseWindow();
     return 0;
