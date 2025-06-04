@@ -16,6 +16,5 @@ struct Player {
     Dialogue dialogue;
 };
 
-void PlayerInput(Player *player,
-                 const std::vector<CollisionTile> *collision_vector);
+void PlayerInput(Player *player);
 void DrawPlayer(Player *player, const Texture2D *texture);
