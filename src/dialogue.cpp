@@ -10,11 +10,13 @@
 
 #include "globals.h"
 
-void LoadDialogue(Dialogue* dialogue) {
+void LoadDialogue(Dialogue* dialogue, std::string* path) {
     std::fstream File;
-    File.open(sds_path + "", std::ios::in);
+    std::string dialogue_path = std::string(RESOURCES_PATH) + *path + ".json";
+    File.open(dialogue_path.c_str(), std::ios::in);
     if (!File.is_open()) {
-        std::cerr << "Error: Could not open json file at " << sds_path << "\n";
+        std::cerr << "Error: Could not open json file at " << dialogue_path
+                  << "\n";
         return;
     }
 

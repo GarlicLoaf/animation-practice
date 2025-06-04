@@ -7,7 +7,8 @@
 
 #include "raymath.h"
 
-void PlayerInput(Player *player, std::vector<Vector2> *collision_vector) {
+void PlayerInput(Player *player, Layer *collision_layer,
+                 Layer *dialogue_layer) {
     switch (player->state) {
         case WALKING: {
             if (IsKeyPressed(KEY_W)) {
@@ -25,13 +26,30 @@ void PlayerInput(Player *player, std::vector<Vector2> *collision_vector) {
             Vector2 new_grid_position{
                 Vector2Add(player->grid_position, player->direction)};
 
-            auto it =
-                std::find_if(collision_vector->begin(), collision_vector->end(),
+            auto collision =
+                std::find_if(collision_layer->tile_positions.begin(),
+                             collision_layer->tile_positions.end(),
                              [&new_grid_position](const Vector2 &v) {
                                  return v == new_grid_position;
                              });
 
-            if (it != collision_vector->end()) {
+            if (collision != collision_layer->tile_positions.end()) {
+                // found collision, so now look for whether the tile is also a
+                // dialogue box
+                auto dialogue =
+                    std::find_if(dialogue_layer->tile_positions.begin(),
+                                 dialogue_layer->tile_positions.end(),
+                                 [&new_grid_position](const Vector2 &v) {
+                                     return v == new_grid_position;
+                                 });
+                if (dialogue != dialogue_layer->tile_positions.end()) {
+                    size_t dialogue_index = std::distance(
+                        dialogue_layer->tile_positions.begin(), dialogue);
+                    player->state = READING;
+                    LoadDialogue(
+                        &player->dialogue,
+                        &(dialogue_layer->tile_information[dialogue_index]));
+                }
             } else {
                 player->grid_position = new_grid_position;
             }

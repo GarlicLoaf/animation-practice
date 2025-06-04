@@ -37,7 +37,7 @@ int main() {
 
     while (!WindowShouldClose()) {
         // update step
-        PlayerInput(&player, &map_data.layers[0].tile_positions);
+        PlayerInput(&player, &map_data.layers[0], &map_data.layers[1]);
 
         // drawing step
         BeginDrawing();

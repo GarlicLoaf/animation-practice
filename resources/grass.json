@@ -19,7 +19,7 @@
             "type": 1
         },
         "3": {
-            "text": "Who is talking to me, is this game broken somehow?!",
+            "text": "Wait, who is talking to me, is this game broken somehow?!",
             "next": 4,
             "type": 0
         },
@@ -38,7 +38,7 @@
         },
         "6": {
             "text": "I must be hallucinating... (Leave)",
-            "next": 31,
+            "next": 27,
             "type": 0
         },
         "8": {

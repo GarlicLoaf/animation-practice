@@ -80,6 +80,8 @@ Map LoadMap() {
 
                 for (int i{0}; i < map_width * map_height; i++) {
                     int tile_type = layer["intGridCsv"][i];
+                    map_layer.tile_information.push_back(
+                        std::to_string(tile_type));
 
                     float x = i % map_width;
                     float y = i / map_width;

@@ -15,6 +15,6 @@ typedef struct Dialogue {
 
 const std::string sds_path = std::string(RESOURCES_PATH) + "/grass.json";
 
-void LoadDialogue(Dialogue* dialogue);
+void LoadDialogue(Dialogue* dialogue, std::string* path);
 void UnloadDialogue(Dialogue* dialogue);
 void DrawDialogue(Dialogue* dialogue);
