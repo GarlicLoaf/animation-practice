@@ -34,7 +34,6 @@ int main() {
     Dialogue dialogue{{}, 0};
     Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING,
                   dialogue};
-    Vector2 temp_player_vec{5.0f, 5.0f};
 
     while (!WindowShouldClose()) {
         // update step
@@ -47,14 +46,13 @@ int main() {
         DrawMap(&map_data, &player.grid_position);
         DrawPlayer(&player, &player_texture);
 
-        // DrawText(TextFormat("Grid Position: %.2f, %.2f",
-        // player.grid_position.x,
-        //                     player.grid_position.y),
-        //          0, 0, 20, WHITE);
+        DrawText(TextFormat("Grid Position: %.2f, %.2f", player.grid_position.x,
+                            player.grid_position.y),
+                 0, 0, 20, WHITE);
 
-        // if (player.state == READING) {
-        //     DrawDialogue(&player.dialogue);
-        // }
+        if (player.state == READING) {
+            DrawDialogue(&player.dialogue);
+        }
         EndDrawing();
     }
 
