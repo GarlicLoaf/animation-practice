@@ -11,25 +11,17 @@
 	"iid": "8bdb1c90-1030-11f0-b004-43fe02de72a1",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 167,
+	"nextUid": 169,
 	"identifierStyle": "Capitalize",
 	"toc": [{
 		"identifier": "DIALOGUE",
 		"instances": [],
-		"instancesData": [
-			{ "iids": {
-				"worldIid": "8bdb43a0-1030-11f0-b004-017fd183038a",
-				"levelIid": "8bdb6ab0-1030-11f0-b004-27b935bbddda",
-				"layerIid": "257f6f30-3740-11f0-b006-73df61e7d99c",
-				"entityIid": "26d1dfd0-3740-11f0-b006-59a0bd92cf41"
-			}, "worldX": 312, "worldY": 136, "widPx": 16, "heiPx": 16, "fields" : {} },
-			{ "iids": {
-				"worldIid": "8bdb43a0-1030-11f0-b004-017fd183038a",
-				"levelIid": "8bdb6ab0-1030-11f0-b004-27b935bbddda",
-				"layerIid": "257f6f30-3740-11f0-b006-73df61e7d99c",
-				"entityIid": "6e711200-3740-11f0-9f0d-476b5ccdfa79"
-			}, "worldX": 280, "worldY": 136, "widPx": 16, "heiPx": 16, "fields" : {} }
-		]
+		"instancesData": [{ "iids": {
+			"worldIid": "8bdb43a0-1030-11f0-b004-017fd183038a",
+			"levelIid": "8bdb6ab0-1030-11f0-b004-27b935bbddda",
+			"layerIid": "257f6f30-3740-11f0-b006-73df61e7d99c",
+			"entityIid": "26d1dfd0-3740-11f0-b006-59a0bd92cf41"
+		}, "worldX": 296, "worldY": 88, "widPx": 16, "heiPx": 16, "fields" : {} }]
 	}],
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -58,6 +50,41 @@
 	"customCommands": [],
 	"flags": [],
 	"defs": { "layers": [
+		{
+			"__type": "Tiles",
+			"identifier": "Chicken",
+			"type": "Tiles",
+			"uid": 168,
+			"doc": null,
+			"uiColor": null,
+			"gridSize": 16,
+			"guideGridWid": 0,
+			"guideGridHei": 0,
+			"displayOpacity": 1,
+			"inactiveOpacity": 1,
+			"hideInList": false,
+			"hideFieldsWhenInactive": false,
+			"canSelectWhenInactive": true,
+			"renderInWorldView": true,
+			"pxOffsetX": 0,
+			"pxOffsetY": 0,
+			"parallaxFactorX": 0,
+			"parallaxFactorY": 0,
+			"parallaxScaling": true,
+			"requiredTags": [],
+			"excludedTags": [],
+			"autoTilesKilledByOtherLayerUid": null,
+			"uiFilterTags": [],
+			"useAsyncRender": false,
+			"intGridValues": [],
+			"intGridValuesGroups": [],
+			"autoRuleGroups": [],
+			"autoSourceLayerDefUid": null,
+			"tilesetDefUid": 167,
+			"tilePivotX": 0,
+			"tilePivotY": 0,
+			"biomeFieldUid": null
+		},
 		{
 			"__type": "Tiles",
 			"identifier": "Biome",
@@ -2131,6 +2158,25 @@
 			"customData": [],
 			"savedSelections": [],
 			"cachedPixelData": { "opaqueTiles": "0000", "averageColors": "5976e9667966b966" }
+		},
+		{
+			"__cWid": 4,
+			"__cHei": 2,
+			"identifier": "Chicken",
+			"uid": 167,
+			"relPath": "Chicken.png",
+			"embedAtlas": null,
+			"pxWid": 64,
+			"pxHei": 32,
+			"tileGridSize": 16,
+			"spacing": 0,
+			"padding": 0,
+			"tags": [],
+			"tagsSourceEnumUid": null,
+			"enumTags": [],
+			"customData": [],
+			"savedSelections": [],
+			"cachedPixelData": { "opaqueTiles": "00000000", "averageColors": "5cb95cb9000000005cb95cb95cb95cb9" }
 		}
 	], "enums": [], "externalEnums": [], "levelFields": [] },
 	"levels": [
@@ -2155,6 +2201,31 @@
 			"externalRelPath": null,
 			"fieldInstances": [],
 			"layerInstances": [
+				{
+					"__identifier": "Chicken",
+					"__type": "Tiles",
+					"__cWid": 38,
+					"__cHei": 25,
+					"__gridSize": 16,
+					"__opacity": 1,
+					"__pxTotalOffsetX": 0,
+					"__pxTotalOffsetY": 0,
+					"__tilesetDefUid": 167,
+					"__tilesetRelPath": "Chicken.png",
+					"iid": "5e2095e0-3740-11f0-a273-0ffbbd5c49b3",
+					"levelId": 0,
+					"layerDefUid": 168,
+					"pxOffsetX": 0,
+					"pxOffsetY": 0,
+					"visible": true,
+					"optionalRules": [],
+					"intGridCsv": [],
+					"autoLayerTiles": [],
+					"seed": 4300034,
+					"overrideTilesetUid": null,
+					"gridTiles": [{ "px": [288,80], "src": [0,0], "f": 0, "t": 0, "d": [208], "a": 1 }],
+					"entityInstances": []
+				},
 				{
 					"__identifier": "Biome",
 					"__type": "Tiles",
@@ -3707,7 +3778,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "DIALOGUE",
-							"__grid": [19,8],
+							"__grid": [18,5],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
@@ -3716,32 +3787,13 @@
 							"width": 16,
 							"height": 16,
 							"defUid": 4,
-							"px": [312,136],
-							"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "grass", "__tile": null, "defUid": 103, "realEditorValues": [{
+							"px": [296,88],
+							"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "chicken_1", "__tile": null, "defUid": 103, "realEditorValues": [{
 								"id": "V_String",
-								"params": ["grass"]
+								"params": ["chicken_1"]
 							}] }],
-							"__worldX": 312,
-							"__worldY": 136
-						},
-						{
-							"__identifier": "DIALOGUE",
-							"__grid": [17,8],
-							"__pivot": [0.5,0.5],
-							"__tags": [],
-							"__tile": null,
-							"__smartColor": "#BE4A2F",
-							"iid": "6e711200-3740-11f0-9f0d-476b5ccdfa79",
-							"width": 16,
-							"height": 16,
-							"defUid": 4,
-							"px": [280,136],
-							"fieldInstances": [{ "__identifier": "name", "__type": "String", "__value": "example_dialogue", "__tile": null, "defUid": 103, "realEditorValues": [{
-								"id": "V_String",
-								"params": ["example_dialogue"]
-							}] }],
-							"__worldX": 280,
-							"__worldY": 136
+							"__worldX": 296,
+							"__worldY": 88
 						}
 					]
 				},
@@ -3769,11 +3821,11 @@
 						0,1,1,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,1,1,1,1,
 						1,1,1,0,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,
 						0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1,
-						1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,0,0,
+						1,1,1,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,1,1,0,
 						0,0,0,0,1,1,0,1,1,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,
 						1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,
 						0,0,0,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,
-						1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
+						1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,
 						0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0,
 						0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,
 						0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,

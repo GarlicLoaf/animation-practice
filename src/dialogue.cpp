@@ -58,8 +58,11 @@ void DrawText(Vector2* print_position, std::istringstream* iss, Color color) {
 
 void DrawDialogue(Dialogue* dialogue) {
     auto& lines = dialogue->content["lines"];
+    auto& character_name = dialogue->content["metadata"]["NAME"];
     std::string current_line_str = std::to_string(dialogue->current_line);
-    std::string current_text = lines[current_line_str]["text"];
+    std::string current_text =
+        character_name.get<std::string>() + ": " +
+        lines[current_line_str]["text"].get<std::string>();
 
     DrawRectangle(0, 64 * 7, 64 * 9, 64 * 2, BLACK);
 
