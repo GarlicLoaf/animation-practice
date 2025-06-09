@@ -15,7 +15,7 @@ int main() {
     InitWindow(SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_TITLE);
     SetTargetFPS(TARGET_FPS);
 
-    SetTraceLogLevel(1);
+    SetTraceLogLevel(4);
 
     // ressource allocation
     std::string player_texture_path =
