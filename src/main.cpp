@@ -2,6 +2,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
+#include "animation.h"
 #include "dialogue.h"
 #include "globals.h"
 #include "map.h"
@@ -9,13 +10,6 @@
 #include "raylib.h"
 
 using json = nlohmann::json;
-
-typedef struct Animation {
-    Vector2 root;
-    int fps;
-    int frames;
-    int current_frame;
-} Animation;
 
 int main() {
     InitWindow(SCREEN_HEIGHT, SCREEN_WIDTH, WINDOW_TITLE);
@@ -32,8 +26,13 @@ int main() {
 
     // initialize player
     Dialogue dialogue{{}, 0};
-    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f},
-                  Vector2{15.0f, 15.0f}, IDLE, dialogue};
+    Animation player_animation{0, 2, 0, 0, 0.3, 0.3};
+    Player player{Vector2{0.0f, 0.0f},
+                  Vector2{15.0f, 15.0f},
+                  Vector2{15.0f, 15.0f},
+                  IDLE,
+                  dialogue,
+                  player_animation};
 
     while (!WindowShouldClose()) {
         // update step

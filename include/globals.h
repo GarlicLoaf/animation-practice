@@ -4,6 +4,7 @@
 constexpr int SCREEN_HEIGHT = 64 * 9;
 constexpr int SCREEN_WIDTH = 64 * 9;
 constexpr int TARGET_FPS = 60;
+constexpr int TILESET_SIZE = 16.0f;
 constexpr const char* WINDOW_TITLE = "RPG-MVP";
 
 // relevant for dialogue

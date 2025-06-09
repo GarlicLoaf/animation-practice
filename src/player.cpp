@@ -5,6 +5,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 
+#include "animation.h"
 #include "raymath.h"
 
 void PlayerInput(Player *player, Layer *collision_layer,
@@ -15,13 +16,21 @@ void PlayerInput(Player *player, Layer *collision_layer,
 
             if (IsKeyDown(KEY_W)) {
                 player->direction.y = -1.0f;
+                player->animation.type = 5;
             } else if (IsKeyDown(KEY_S)) {
                 player->direction.y = 1.0f;
+                player->animation.type = 4;
             } else if (IsKeyDown(KEY_A)) {
                 player->direction.x = -1.0f;
+                player->animation.type = 6;
             } else if (IsKeyDown(KEY_D)) {
                 player->direction.x = 1.0f;
+                player->animation.type = 7;
+            } else if (player->animation.type >= 4) {
+                player->animation.type -= 4;
+                player->animation.cur = 0;
             }
+
             Vector2 new_grid_position{
                 Vector2Add(player->grid_position, player->direction)};
 
@@ -42,8 +51,12 @@ void PlayerInput(Player *player, Layer *collision_layer,
                                      return v == new_grid_position;
                                  });
                 if (dialogue != dialogue_layer->tile_positions.end()) {
+                    player->animation.type -= 4;
+                    player->animation.cur = 0;
+
                     size_t dialogue_index = std::distance(
                         dialogue_layer->tile_positions.begin(), dialogue);
+
                     player->state = READING;
                     LoadDialogue(
                         &player->dialogue,
@@ -59,7 +72,7 @@ void PlayerInput(Player *player, Layer *collision_layer,
             player->grid_position = Vector2Add(
                 player->grid_position, Vector2Scale(player->direction, 0.05f));
 
-            if (Vector2Distance(player->grid_position, player->goal_position) <
+            if (Vector2Distance(player->grid_position, player->goal_position) <=
                 0.05f) {
                 player->grid_position = player->goal_position;
                 player->state = IDLE;
@@ -108,9 +121,10 @@ void PlayerInput(Player *player, Layer *collision_layer,
 void DrawPlayer(Player *player, const Texture2D *texture) {
     // Always draws the player in the center of the screen, regardless of
     // player.grid_position
-    Rectangle rect{16.0f, 16.0f, 16.0f, 16.0f};
-
     Rectangle target{256.0f, 256.0f, 64.0f, 64.0f};
 
-    DrawTexturePro(*texture, rect, target, Vector2{0.0f, 0.0f}, 0.0f, WHITE);
+    DrawTexturePro(*texture, GetAnimationFrame(&(player->animation)), target,
+                   Vector2{0.0f, 0.0f}, 0.0f, WHITE);
+
+    UpdateAnimation(&(player->animation));
 }

@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "animation.h"
 #include "dialogue.h"
 #include "map.h"
 #include "raylib.h"
@@ -14,6 +15,7 @@ struct Player {
     Vector2 goal_position;
     PLAYER_STATE state;
     Dialogue dialogue;
+    Animation animation;
 };
 
 void PlayerInput(Player *player, Layer *collision_layer, Layer *dialogue_layer);
