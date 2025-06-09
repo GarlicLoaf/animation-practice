@@ -6,12 +6,12 @@
 #include "map.h"
 #include "raylib.h"
 
-enum PLAYER_STATE { WALKING, READING };
+enum PLAYER_STATE { IDLE, WALKING, READING };
 
 struct Player {
     Vector2 direction;
     Vector2 grid_position;
-    bool is_moving;
+    Vector2 goal_position;
     PLAYER_STATE state;
     Dialogue dialogue;
 };

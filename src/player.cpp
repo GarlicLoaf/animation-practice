@@ -10,19 +10,18 @@
 void PlayerInput(Player *player, Layer *collision_layer,
                  Layer *dialogue_layer) {
     switch (player->state) {
-        case WALKING: {
-            if (IsKeyPressed(KEY_W)) {
-                player->direction.y = -1.0f;
-            } else if (IsKeyPressed(KEY_S)) {
-                player->direction.y = 1.0f;
-            } else if (IsKeyPressed(KEY_A)) {
-                player->direction.x = -1.0f;
-            } else if (IsKeyPressed(KEY_D)) {
-                player->direction.x = 1.0f;
-            } else {
-                player->direction = Vector2{0.0f, 0.0f};
-            }
+        case IDLE: {
+            player->direction = Vector2{0.0f, 0.0f};
 
+            if (IsKeyDown(KEY_W)) {
+                player->direction.y = -1.0f;
+            } else if (IsKeyDown(KEY_S)) {
+                player->direction.y = 1.0f;
+            } else if (IsKeyDown(KEY_A)) {
+                player->direction.x = -1.0f;
+            } else if (IsKeyDown(KEY_D)) {
+                player->direction.x = 1.0f;
+            }
             Vector2 new_grid_position{
                 Vector2Add(player->grid_position, player->direction)};
 
@@ -51,7 +50,19 @@ void PlayerInput(Player *player, Layer *collision_layer,
                         &(dialogue_layer->tile_information[dialogue_index]));
                 }
             } else {
-                player->grid_position = new_grid_position;
+                player->state = WALKING;
+                player->goal_position = new_grid_position;
+            }
+            break;
+        }
+        case WALKING: {
+            player->grid_position = Vector2Add(
+                player->grid_position, Vector2Scale(player->direction, 0.05f));
+
+            if (Vector2Distance(player->grid_position, player->goal_position) <
+                0.05f) {
+                player->grid_position = player->goal_position;
+                player->state = IDLE;
             }
             break;
         }
@@ -63,7 +74,7 @@ void PlayerInput(Player *player, Layer *collision_layer,
                 auto &current_line_data = lines[current_line_str];
 
                 if (current_line_data["next"] == -1) {
-                    player->state = WALKING;
+                    player->state = IDLE;
                     UnloadDialogue(&player->dialogue);
                     return;
                 }

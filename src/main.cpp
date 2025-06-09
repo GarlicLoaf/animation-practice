@@ -32,8 +32,8 @@ int main() {
 
     // initialize player
     Dialogue dialogue{{}, 0};
-    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f}, false, WALKING,
-                  dialogue};
+    Player player{Vector2{0.0f, 0.0f}, Vector2{15.0f, 15.0f},
+                  Vector2{15.0f, 15.0f}, IDLE, dialogue};
 
     while (!WindowShouldClose()) {
         // update step
